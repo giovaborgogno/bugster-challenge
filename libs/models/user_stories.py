@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, JSON, DateTime
 
-from api.database import Base
+from libs.database import Base
 
 
 class UserStory(Base):

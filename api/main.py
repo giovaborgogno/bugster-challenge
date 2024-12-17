@@ -3,7 +3,7 @@ from fastapi import APIRouter, FastAPI
 from mangum import Mangum
 
 from api.controllers.user_stories import UserStoriesController
-from api.database import engine, Base
+from libs.database import engine, Base
 from api.controllers.events import EventsController
 
 

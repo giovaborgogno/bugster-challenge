@@ -3,7 +3,7 @@ import json
 import pika
 from sqlalchemy.orm import Session
 
-from api.models.events import Event
+from libs.models.events import Event
 
 class EventsService:
     def __init__(self, db: Session):

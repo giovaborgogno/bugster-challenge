@@ -2,9 +2,9 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from api.database import get_db
+from libs.database import get_db
 from api.schemas.user_stories import FilterParams
-from api.services.user_stories import UserStoriesService
+from libs.services.user_stories import UserStoriesService
 
 
 class UserStoriesController:

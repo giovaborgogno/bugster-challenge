@@ -2,8 +2,8 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from api.models.user_stories import UserStory
-from api.services import mocks
+from libs.models.user_stories import UserStory
+from libs.services import mocks
 
 class UserStoriesService:
     def __init__(self, db: Session):

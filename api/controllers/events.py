@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from api.database import get_db
+from libs.database import get_db
 from api.schemas.events import EventResponse, EventsPayload
-from api.services.events import EventsService
+from libs.services.events import EventsService
 
 
 class EventsController:
