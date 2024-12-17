@@ -1,0 +1,5 @@
+**/__pycache__/
+bugster.db
+events.json
+venv
+env
