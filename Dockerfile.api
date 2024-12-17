@@ -1,0 +1,11 @@
+FROM --platform=linux/amd64 public.ecr.aws/lambda/python:3.9
+
+COPY requirements.txt ./
+RUN pip install -q -r requirements.txt
+
+COPY ./api ./api
+
+# ENV AWS_REGION="us-west-2"
+# ENV DB_URL="https://dynamodb.${AWS_REGION}.amazonaws.com"
+
+CMD [ "api.main.lambda_handler" ]
