@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import APIRouter, FastAPI
 from mangum import Mangum
 
+from api.controllers.user_stories import UserStoriesController
 from api.database import engine, Base
 from api.controllers.events import EventsController
 
@@ -24,9 +25,11 @@ async def root():
     return {"message": "Hello World", "version": "v1"}
 
 events_controller = EventsController()
+stories_controller = UserStoriesController()
 
 app.include_router(main_router)
 app.include_router(events_controller.router)
+app.include_router(stories_controller.router)
 
 lambda_handler = Mangum(app, lifespan="off", api_gateway_base_path="/api/v1")
 
