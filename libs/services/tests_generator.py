@@ -16,6 +16,7 @@ class TestsGeneratorService:
         test_code += "\n    ".join(steps)
         test_code += "\n\n    # Assertions\n    "
         test_code += "\n    ".join(assertions)
+        test_code += "\n"
         
         return test_code 
 

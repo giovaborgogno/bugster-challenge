@@ -68,4 +68,5 @@ code = \
 
     # Assertions
     expect(page.url()).to_be("https://example.com/profile")
-    expect(page.locator("#display-name")).to_have_text("John Doe")"""
+    expect(page.locator("#display-name")).to_have_text("John Doe")
+"""
