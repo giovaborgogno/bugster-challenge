@@ -3,3 +3,5 @@ bugster.db
 events.json
 venv
 env
+.vscode
+.pytest_cache

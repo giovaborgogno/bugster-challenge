@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from libs.models.events import Event
 
+
 class EventsService:
     def __init__(self, db: Session):
         self.db = db
