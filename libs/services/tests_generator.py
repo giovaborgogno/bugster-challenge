@@ -82,6 +82,6 @@ class TestsGeneratorService:
         if not user_story:
             return []
         # For simplicity we are not saving the tests in the database
-        # if user_story.has_tests:
+        # if user_story.hasTests:
         #     return user_story.tests
         return self._generate_tests([user_story])

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, JSON, DateTime
+from sqlalchemy import Boolean, Column, String, Integer, JSON, DateTime
 
 from libs.database import Base
 
@@ -14,3 +14,4 @@ class UserStory(Base):
     actions = Column(JSON)
     networkRequests = Column(JSON)
     finalState = Column(JSON)
+    hasTests = Column(Boolean)
