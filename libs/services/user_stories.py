@@ -14,3 +14,9 @@ class UserStoriesService:
 
     def get_user_stories(self) -> List[UserStory]:
         return self.db.query(UserStory).all()
+
+    def get_user_stories_without_tests(self) -> List[UserStory]:
+        return self.db.query(UserStory).filter(UserStory.tests == None).all()
+    
+    def get_user_story_by_id(self, user_story_id: str) -> UserStory:
+        return self.db.query(UserStory).filter(UserStory.id==user_story_id).first()

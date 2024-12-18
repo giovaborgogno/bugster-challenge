@@ -55,3 +55,17 @@ user_stories = [
         }
     }
 ]
+
+code = \
+"""def test_us-123456(page):
+    # Test steps
+    page.locator("#email").fill("user@example.com")
+    page.locator("#password").fill("********")
+    page.locator("#login-button").click()
+    page.goto("https://example.com/profile")
+    page.locator("#display-name").fill("John Doe")
+    page.locator("#save-profile").click()
+
+    # Assertions
+    expect(page.url()).to_be("https://example.com/profile")
+    expect(page.locator("#display-name")).to_have_text("John Doe")"""
