@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api.dev
+    ports:
+      - "3100:3100"
+    environment:
+      - SQS_ENDPOINT_URL=http://sqs:9324
+      - SQS_REGION=elasticmq
+      - AWS_ACCESS_KEY_ID=x
+      - AWS_SECRET_ACCESS_KEY=x
+      - SQS_QUEUE_NAME=queue1
+    volumes:
+      - ./bugster.db:/app/bugster.db
+    depends_on:
+      - sqs
+    networks:
+      - bugster_network
+
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer.dev
+    environment:
+      - SQS_ENDPOINT_URL=http://sqs:9324
+      - SQS_REGION=elasticmq
+      - AWS_ACCESS_KEY_ID=x
+      - AWS_SECRET_ACCESS_KEY=x
+      - SQS_QUEUE_NAME=queue1
+    volumes:
+      - ./bugster.db:/app/bugster.db
+    depends_on:
+      - sqs
+    networks:
+      - bugster_network
+
+  sqs:
+    image: softwaremill/elasticmq-native
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+    networks:
+      - bugster_network
+
+networks:
+  bugster_network:
+    driver: bridge

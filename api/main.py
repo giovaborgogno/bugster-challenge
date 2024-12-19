@@ -37,4 +37,4 @@ app.include_router(tests_generator_controller.router)
 lambda_handler = Mangum(app, lifespan="off", api_gateway_base_path="/api/v1")
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=3100)
+    uvicorn.run(app, host="0.0.0.0", port=3100)

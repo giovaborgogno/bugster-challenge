@@ -4,5 +4,6 @@ COPY requirements.txt ./
 RUN pip install -q -r requirements.txt
 
 COPY ./consumer ./consumer
+COPY ./libs ./libs
 
 CMD [ "consumer.main.lambda_handler" ]

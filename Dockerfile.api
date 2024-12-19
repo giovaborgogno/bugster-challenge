@@ -4,6 +4,7 @@ COPY requirements.txt ./
 RUN pip install -q -r requirements.txt
 
 COPY ./api ./api
+COPY ./libs ./libs
 
 # ENV AWS_REGION="us-west-2"
 # ENV DB_URL="https://dynamodb.${AWS_REGION}.amazonaws.com"
