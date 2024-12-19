@@ -29,21 +29,19 @@ class TestsGeneratorService:
         
         for action in actions:
             action_type = action.get('type')
-            target = action.get('target')
             
-            if action_type == 'input':
-                value = action.get('value')
-                test_steps.append(f'page.locator("{target}").fill("{value}")')
+            # I chose to use a map to avoid a long if-elif-else block, so we can easily add more action types and this way has direct access to the action
+            action_map = {
+                'input': lambda action: f'page.locator("{action.get("target")}").fill("{action.get("value")}")',
+                'click': lambda action: f'page.locator("{action.get("target")}").click()',
+                'navigation': lambda action: f'page.goto("{action.get("url")}")',
+                # We can add more action types here
+            }
             
-            elif action_type == 'click':
-                test_steps.append(f'page.locator("{target}").click()')
+            if action_type in action_map:
+                test_steps.append(action_map[action_type](action))
             
-            elif action_type == 'navigation':
-                url = action.get('url')
-                test_steps.append(f'page.goto("{url}")')
-            
-            # We can add more action types here
- 
+        # I think we can use the finalState to generate the assertions, but we can also add more logic here
         if user_story.finalState:
             final_url = user_story.finalState.get('url')
             if final_url:
@@ -54,11 +52,11 @@ class TestsGeneratorService:
                 display_name = user_story.finalState['displayName']
                 assertions.append(f'expect(page.locator("#display-name")).to_have_text("{display_name}")')
         test_code = self._generate_test_code(test_name, test_steps, assertions)
+
         # We should use a Test model here
         return {"name": test_name, "story": user_story.id, "steps": test_steps, "assertions": assertions, "code": test_code} 
 
     def _generate_tests(self, user_stories: List[UserStory]) -> List[str]:
-        # Aquí iría la lógica para generar los tests a partir de las user stories
         tests = []
         for story in user_stories:
             tests.append(self._convert_user_story_to_test(story))
