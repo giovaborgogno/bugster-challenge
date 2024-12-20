@@ -14,7 +14,7 @@ class EventsController:
 
     def _setup_routes(self):
         self.router.add_api_route("/{event_id}", self.get_event_by_id, methods=["GET"])
-        self.router.add_api_route("/", self.create_events, methods=["POST"])
+        self.router.add_api_route("/", self.create_events, methods=["POST"], description="Save events to database and enqueue them to be processed")
     
     def create_events(self, events: EventsPayload, db: Session = Depends(get_db)):
         try:

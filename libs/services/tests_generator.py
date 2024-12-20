@@ -20,7 +20,7 @@ class TestsGeneratorService:
         
         return test_code 
 
-    def _convert_user_story_to_test(self, user_story: UserStory) -> str:
+    def _convert_user_story_to_test(self, user_story: UserStory) -> dict:
         test_name = f"test-{user_story.id}" 
         actions = user_story.actions
         
@@ -30,6 +30,8 @@ class TestsGeneratorService:
         for action in actions:
             action_type = action.get('type')
             
+            # I think the key to generate good tests is the good processesing of the user stories
+            # so here we could add more logic, like locate by text, by class, by id, etc instead of just by page.locator()
             # I chose to use a map to avoid a long if-elif-else block, so we can easily add more action types and this way has direct access to the action
             action_map = {
                 'input': lambda action: f'page.locator("{action.get("target")}").fill("{action.get("value")}")',
@@ -47,12 +49,12 @@ class TestsGeneratorService:
             if final_url:
                 assertions.append(f'expect(page.url()).to_be("{final_url}")')
             
-            # hardcoded assertion for displayName for now
-            if 'displayName' in user_story.finalState:
-                display_name = user_story.finalState['displayName']
-                assertions.append(f'expect(page.locator("#display-name")).to_have_text("{display_name}")')
+           # we can add more assertions here
+         
         test_code = self._generate_test_code(test_name, test_steps, assertions)
 
+        # This function just generates the test data but doesn't save it in the database
+        # so the user can review and modify the tests before saving them
         # We should use a Test model here
         return {"name": test_name, "story": user_story.id, "steps": test_steps, "assertions": assertions, "code": test_code} 
 

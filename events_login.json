@@ -1,0 +1,199 @@
+{
+    "events": [
+        {
+            "event": "$input",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/login",
+                "$host": "example.com",
+                "$pathname": "/login",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "",
+                "$referring_domain": "",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "input",
+                "elementType": "input",
+                "elementText": "user@example.com",
+                "elementAttributes": {
+                    "id": "#email",
+                    "class": "form-control"
+                },
+                "timestamp": "2023-09-16T10:30:15.000Z",
+                "x": 500,
+                "y": 250,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:15.000Z"
+        },
+        {
+            "event": "$input",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/login",
+                "$host": "example.com",
+                "$pathname": "/login",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "",
+                "$referring_domain": "",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "input",
+                "elementType": "input",
+                "elementText": "********",
+                "elementAttributes": {
+                    "id": "#password",
+                    "class": "form-control"
+                },
+                "timestamp": "2023-09-16T10:30:25.000Z",
+                "x": 500,
+                "y": 350,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:25.000Z"
+        },
+        {
+            "event": "$click",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/login",
+                "$host": "example.com",
+                "$pathname": "/login",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "",
+                "$referring_domain": "",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "click",
+                "elementType": "button",
+                "elementText": "Login",
+                "elementAttributes": {
+                    "id": "#login-button",
+                    "class": "btn btn-primary"
+                },
+                "timestamp": "2023-09-16T10:30:35.000Z",
+                "x": 500,
+                "y": 450,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:35.000Z"
+        },
+        {
+            "event": "$navigation",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/login",
+                "$host": "example.com",
+                "$pathname": "/login",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "https://example.com/login",
+                "$referring_domain": "example.com",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "navigation",
+                "elementType": "a",
+                "elementText": "Profile",
+                "elementAttributes": {},
+                "timestamp": "2023-09-16T10:30:45.000Z",
+                "x": 500,
+                "y": 250,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:45.000Z"
+        },
+        {
+            "event": "$input",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/profile",
+                "$host": "example.com",
+                "$pathname": "/profile",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "https://example.com/login",
+                "$referring_domain": "example.com",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "input",
+                "elementType": "input",
+                "elementText": "John Doe",
+                "elementAttributes": {
+                    "id": "#display-name",
+                    "class": "form-control"
+                },
+                "timestamp": "2023-09-16T10:30:55.000Z",
+                "x": 500,
+                "y": 250,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:55.000Z"
+        },
+        {
+            "event": "$click",
+            "properties": {
+                "distinct_id": "user-unique-id-1",
+                "session_id": "session-unique-id-1",
+                "journey_id": "journey-unique-id-1",
+                "$current_url": "https://example.com/profile",
+                "$host": "example.com",
+                "$pathname": "/profile",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "https://example.com/login",
+                "$referring_domain": "example.com",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "click",
+                "elementType": "button",
+                "elementText": "Save Profile",
+                "elementAttributes": {
+                    "id": "#save-profile",
+                    "class": "btn btn-success"
+                },
+                "timestamp": "2023-09-16T10:31:15.000Z",
+                "x": 500,
+                "y": 450,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:31:15.000Z"
+        }
+    ]
+}

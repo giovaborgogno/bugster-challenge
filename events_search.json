@@ -1,0 +1,102 @@
+{
+    "events": [
+        {
+            "event": "$click",
+            "properties": {
+                "distinct_id": "user-unique-id-2",
+                "session_id": "session-unique-id-2",
+                "journey_id": "journey-unique-id-2",
+                "$current_url": "https://example.com",
+                "$host": "example.com",
+                "$pathname": "/home",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "",
+                "$referring_domain": "",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "click",
+                "elementType": "a",
+                "elementText": "Home",
+                "elementAttributes": {
+                    "href": "/home"
+                },
+                "timestamp": "2023-09-16T10:30:00.000Z",
+                "x": 500,
+                "y": 250,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:00.000Z"
+        },
+        {
+            "event": "$click",
+            "properties": {
+                "distinct_id": "user-unique-id-2",
+                "session_id": "session-unique-id-2",
+                "journey_id": "journey-unique-id-2",
+                "$current_url": "https://example.com/home",
+                "$host": "example.com",
+                "$pathname": "/home",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "https://example.com",
+                "$referring_domain": "example.com",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "click",
+                "elementType": "button",
+                "elementText": "Search",
+                "elementAttributes": {
+                    "id": "#search",
+                    "class": "search-button"
+                },
+                "timestamp": "2023-09-16T10:30:20.000Z",
+                "x": 600,
+                "y": 300,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:20.000Z"
+        },
+        {
+            "event": "$input",
+            "properties": {
+                "distinct_id": "user-unique-id-2",
+                "session_id": "session-unique-id-2",
+                "journey_id": "journey-unique-id-2",
+                "$current_url": "https://example.com/search",
+                "$host": "example.com",
+                "$pathname": "/search",
+                "$browser": "Chrome",
+                "$device": "Desktop",
+                "$referrer": "https://example.com/home",
+                "$referring_domain": "example.com",
+                "$screen_height": 1080,
+                "$screen_width": 1920,
+                "eventType": "input",
+                "elementType": "input",
+                "elementText": "product",
+                "elementAttributes": {
+                    "id": "#search-input",
+                    "class": "search-box"
+                },
+                "timestamp": "2023-09-16T10:30:35.000Z",
+                "x": 500,
+                "y": 250,
+                "mouseButton": 0,
+                "ctrlKey": false,
+                "shiftKey": false,
+                "altKey": false,
+                "metaKey": false
+            },
+            "timestamp": "2023-09-16T10:30:35.000Z"
+        }
+    ]
+}

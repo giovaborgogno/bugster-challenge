@@ -56,25 +56,32 @@ class UserStoriesService:
             },
             hasTests= False
         )
+
+        def get_target(attributes):
+            class_list = attributes.get('class', '').split()
+            return attributes.get('id') or f'.{".".join([f"{cls}" for cls in class_list])}'
         
+        # I think this is the key to get good tests, we need to identify correctly the actions
+        # for this example I'm just considering click and input events, and the target is the id or class of the element
+        # but we should consider more attributes to identify the target. So in playwright we can use locators by id, class, text, attributes etc.
         for event in events:
             action_type = event.properties['eventType']
             attributes = event.properties['elementAttributes']
             if action_type == "click":
                 if attributes.get('href'):
                     user_story.actions.append({
-                        "type": "navigation",
+                        "type": "navigation", # Im assuming navigation is the same as click
                         "url": attributes['href'],
                     })
                 else:
-                    target = attributes.get('id') or attributes.get('class')
+                    target = get_target(attributes)
                     if target:
                         user_story.actions.append({
                             "type": "click",
                             "target": target,
                         })
             elif action_type == "input":
-                target = attributes.get('id') or attributes.get('name')
+                target = get_target(attributes)
                 if target:
                     user_story.actions.append({
                         "type": "input",
@@ -117,7 +124,8 @@ class PatternIdentifier:
         """
         actions = []
         for action in user_story.actions:
-            action_str = f"{action['type']}:{action.get('target', '')}:{action.get('value', '')}"
+            # We should consider more attributes for a more accurate pattern identification
+            action_str = f"{action['type']}:{action.get('target', '')}:{action.get('value', '')}:{action.get('url', '')}"
             actions.append(action_str)
         return " ".join(actions)
 
@@ -125,14 +133,14 @@ class PatternIdentifier:
         # Get the vector for the existing user stories
         actions = [self.extract_actions(story) for story in existing_user_stories]
         tags = [story.tags for story in existing_user_stories]
-        X = self.vectorizer.fit_transform(actions)
+        actions_vector = self.vectorizer.fit_transform(actions)
         
         # Get the vector for the new user story
         new_action_str = self.extract_actions(user_story)
         new_action_vector = self.vectorizer.transform([new_action_str])
         
         # Calculate cosine similarity between the new user story vector and existing user story vectors
-        similarities = cosine_similarity(new_action_vector, X)
+        similarities = cosine_similarity(new_action_vector, actions_vector)
         
         # Set a similarity threshold (60% in this case)
         similarity_threshold = 0.6

@@ -14,7 +14,7 @@ class TestsGeneratorController:
         self.service = TestsGeneratorService
 
     def _setup_routes(self):
-        self.router.add_api_route("/", self.get_tests, methods=["GET"])
+        self.router.add_api_route("/", self.get_tests, methods=["GET"], description="Generate tests for user stories but not save them to database")
 
     def get_tests(self, filter_params: Annotated[FilterParams, Query()] , db: Session = Depends(get_db)):
         try:
@@ -27,5 +27,4 @@ class TestsGeneratorController:
                 tests = service.get_tests()
             return tests
         except Exception as e:
-            print(e)
             raise HTTPException(status_code=500, detail=str(e))

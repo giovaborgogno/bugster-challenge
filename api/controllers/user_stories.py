@@ -14,7 +14,7 @@ class UserStoriesController:
         self.service = UserStoriesService
 
     def _setup_routes(self):
-        self.router.add_api_route("/", self.get_user_stories, methods=["GET"])
+        self.router.add_api_route("/", self.get_user_stories, methods=["GET"], description="Get user stories from database")
 
     def get_user_stories(self, filter_params: Annotated[FilterParams, Query()] , db: Session = Depends(get_db)):
         try:

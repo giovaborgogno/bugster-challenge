@@ -65,7 +65,7 @@ class EventsService:
 
     def get_events_by_journey_id(self, journey_id: str = None) -> List[Event]:
         if journey_id:
-            # trade-off: For some reason this query filtering is not working, so I'm filtering manually 
+            # For some reason this query filtering is not working, so I'm filtering manually for simplicity
             # events = self.db.query(Event).filter(Event.properties['journey_id'] == journey_id).all()
             events = self.db.query(Event).all()
             events = [event for event in events if event.properties['journey_id'] == journey_id]
