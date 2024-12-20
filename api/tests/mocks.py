@@ -57,7 +57,7 @@ user_stories = [
 ]
 
 code = \
-"""def test_us-123456(page):
+"""def test-us-123456(page):
     # Test steps
     page.locator("#email").fill("user@example.com")
     page.locator("#password").fill("********")

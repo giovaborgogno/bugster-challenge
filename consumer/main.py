@@ -6,6 +6,7 @@ import os
 import logging
 
 from libs.database import get_db
+from libs.services.events import EventsService
 from libs.services.user_stories import UserStoriesService
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -23,12 +24,16 @@ def handler(event, context):
             
             # HERE WE HAVE THE USER STORY GENERATION AND PROCESSING
             db = next(get_db())
+            events_service = EventsService(db)
+            user_stories_service = UserStoriesService(db)
             # First we generate the user story but we dont save it
-            user_story = UserStoriesService(db).generate_user_stories(journey_id)[0]
+            events = events_service.get_events_by_journey_id(journey_id)
+            user_story = user_stories_service.generate_user_story(events)
             # Second we process the user story, for example classify by common patterns.
-            # TODO: Add the processing logic here
+            user_story = user_stories_service.identify_common_patterns(user_story)
+            # Maybe if the similarity is high we can avoid saving the user story
             # Third we save the user story
-            user_story = UserStoriesService(db).create_user_story(user_story)
+            user_story = user_stories_service.create_user_story(user_story)
                 
             
             logger.info("Event processed successfully.")

@@ -1,6 +1,6 @@
-from collections import defaultdict
 import json
 import os
+from typing import List
 
 import boto3
 from dotenv import load_dotenv
@@ -63,7 +63,7 @@ class EventsService:
     def get_event_by_id(self, event_id: str) -> Event:
         return self.db.query(Event).filter(Event.id == event_id).first()
 
-    def get_events_grouped_by_journey_id(self, journey_id: str = None) -> dict:
+    def get_events_by_journey_id(self, journey_id: str = None) -> List[Event]:
         if journey_id:
             # trade-off: For some reason this query filtering is not working, so I'm filtering manually 
             # events = self.db.query(Event).filter(Event.properties['journey_id'] == journey_id).all()
@@ -72,7 +72,4 @@ class EventsService:
         else:
             events = self.db.query(Event).all()
         events.sort(key=lambda event: datetime.strptime(event.timestamp, '%Y-%m-%dT%H:%M:%S.%fZ'))
-        grouped_events = defaultdict(list)
-        for event in events:
-            grouped_events[event.properties['journey_id']].append(event)
-        return grouped_events
+        return events

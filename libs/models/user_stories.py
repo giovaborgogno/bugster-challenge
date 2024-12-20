@@ -15,3 +15,4 @@ class UserStory(Base):
     networkRequests = Column(JSON)
     finalState = Column(JSON)
     hasTests = Column(Boolean)
+    tags = Column(JSON)
