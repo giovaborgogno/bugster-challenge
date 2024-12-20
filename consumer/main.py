@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 import os
 import logging
 
+from libs.database import get_db
+from libs.services.user_stories import UserStoriesService
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -18,7 +21,15 @@ def handler(event, context):
             journey_id = message_body['journey_id']
             logger.info(f"Handling journey_id: {journey_id}")
             
-            # TODO: Manage the event here
+            # HERE WE HAVE THE USER STORY GENERATION AND PROCESSING
+            db = next(get_db())
+            # First we generate the user story but we dont save it
+            user_story = UserStoriesService(db).generate_user_stories(journey_id)[0]
+            # Second we process the user story, for example classify by common patterns.
+            # TODO: Add the processing logic here
+            # Third we save the user story
+            user_story = UserStoriesService(db).create_user_story(user_story)
+                
             
             logger.info("Event processed successfully.")
         

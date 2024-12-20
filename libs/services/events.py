@@ -1,3 +1,4 @@
+from collections import defaultdict
 import json
 import os
 
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 
 from libs.models.events import Event
+from datetime import datetime
 
 
 class EventsService:
@@ -60,3 +62,17 @@ class EventsService:
         
     def get_event_by_id(self, event_id: str) -> Event:
         return self.db.query(Event).filter(Event.id == event_id).first()
+
+    def get_events_grouped_by_journey_id(self, journey_id: str = None) -> dict:
+        if journey_id:
+            # trade-off: For some reason this query filtering is not working, so I'm filtering manually 
+            # events = self.db.query(Event).filter(Event.properties['journey_id'] == journey_id).all()
+            events = self.db.query(Event).all()
+            events = [event for event in events if event.properties['journey_id'] == journey_id]
+        else:
+            events = self.db.query(Event).all()
+        events.sort(key=lambda event: datetime.strptime(event.timestamp, '%Y-%m-%dT%H:%M:%S.%fZ'))
+        grouped_events = defaultdict(list)
+        for event in events:
+            grouped_events[event.properties['journey_id']].append(event)
+        return grouped_events

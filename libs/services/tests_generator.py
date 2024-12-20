@@ -21,7 +21,7 @@ class TestsGeneratorService:
         return test_code 
 
     def _convert_user_story_to_test(self, user_story: UserStory) -> str:
-        test_name = f"test_{user_story.id}" 
+        test_name = f"test-{user_story.id}" 
         actions = user_story.actions
         
         test_steps = []
